@@ -22,7 +22,7 @@ public class UserDao extends BaseDao {
 	{
 		User user = null;
         try {
-            String sql = "SELECT * FROM t_User WHERE login_anme? ";
+            String sql = "SELECT * FROM t_User WHERE login_anme=? ";
             user = this.getJdbcTemplate().queryForObject(sql, new Object[]{loginName,loginName}, 
                     new BeanPropertyRowMapper<User>(User.class));
         }
