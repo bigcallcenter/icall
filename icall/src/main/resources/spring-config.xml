@@ -1,0 +1,75 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/mvc 
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    http://www.springframework.org/schema/websocket 
+    http://www.springframework.org/schema/websocket/spring-websocket-4.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+	<context:component-scan base-package="com.bigcallcenter" />
+	<context:annotation-config />  
+	<mvc:annotation-driven />  
+	
+	<!-- spring security -->
+	<!-- 该路径下的资源不用过滤 -->     
+	
+	<http security="none" pattern="/static/**" />
+	<http security="none" pattern="/**/*.html" />
+	<http security="none" pattern="/loginpage.do**" />
+	<http security="none" pattern="/index.jsp" />
+	<http pattern="static/**" security="none"/> 
+	<http auto-config="true">
+		<anonymous enabled="false"/>
+		<access-denied-handler error-page="/403" />      
+		<intercept-url pattern="/**" access="ROLE_USER" />
+		<form-login login-page="/loginpage.do" login-processing-url="/login.do" default-target-url="/index/main.do"
+			authentication-failure-url="/loginpage.do?error=true" username-parameter="username" always-use-default-target="true"
+			password-parameter="password"/>
+		<logout logout-success-url="/loginpage.do?logout"   
+		delete-cookies="JSESSIONID" invalidate-session="true"/>
+		        
+    
+	</http>
+	<!--   
+	事件监听:实现了 ApplicationListener监听接口，包括AuthenticationCredentialsNotFoundEvent 事件， 
+	  AuthorizationFailureEvent事件，AuthorizedEvent事件， PublicInvocationEvent事件 
+	  --> 
+	<beans:bean
+        class="org.springframework.security.authentication.event.LoggerListener" />  
+    <beans:bean id="loginDetailService"
+        class="com.bigcallcenter.icall.security.LoginDataService"/>
+	 <authentication-manager alias="myAuthenticationManager">
+        <authentication-provider user-service-ref="loginDetailService">
+            <password-encoder hash="md5" ref="passwordEncoder" />
+        </authentication-provider> 
+    </authentication-manager>
+    
+    <!-- 用户的密码加密或解密 --> 
+	<beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" /> 
+	
+	<!-- 定义上下文返回的消息的国际化。 --> 
+	<beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource" > 
+	  <beans:property name="basename" value="classpath:messages_zh_CN"/> 
+	</beans:bean> 
+	
+	<!-- 全局唯一ID生成器 --> 
+	<beans:bean id="idGenerater" class="com.sohu.idcenter.IdWorker" scope="singleton">
+		<beans:constructor-arg index="0">
+			<beans:value>1</beans:value>
+		</beans:constructor-arg>
+		<beans:constructor-arg index="1">
+			<beans:value>1</beans:value>
+		</beans:constructor-arg>
+		<beans:constructor-arg index="2">
+			<beans:value>1</beans:value>
+		</beans:constructor-arg>
+	</beans:bean> 
+</beans:beans>
