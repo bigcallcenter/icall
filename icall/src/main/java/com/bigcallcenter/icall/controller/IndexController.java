@@ -34,22 +34,8 @@ public class IndexController {
 		modelMap.addAttribute("username", username);
 		modelMap.addAttribute("password", password);
 		String forwardUrl="";
-		if(username.startsWith("admin"))
-		{
-			forwardUrl="forward:/admin/index.do";
-		}
-		else
-		{
-			 if(username.startsWith("teacher"))
-			 {
-				 forwardUrl="forward:/schoolAdmin/index.do";
-			 }
-			 else
-			 {
-				 forwardUrl="forward:/teacher/index.do";
-			 }
-		}
 		
+		forwardUrl="forward:/admin/index.do";
 		return forwardUrl;
 	}
 	

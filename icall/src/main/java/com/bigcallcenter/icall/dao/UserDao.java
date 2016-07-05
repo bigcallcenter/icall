@@ -22,8 +22,8 @@ public class UserDao extends BaseDao {
 	{
 		User user = null;
         try {
-            String sql = "SELECT * FROM t_User WHERE login_anme=? ";
-            user = this.getJdbcTemplate().queryForObject(sql, new Object[]{loginName,loginName}, 
+            String sql = "SELECT * FROM t_sys_User WHERE loginName=? ";
+            user = this.getJdbcTemplate().queryForObject(sql, new Object[]{loginName}, 
                     new BeanPropertyRowMapper<User>(User.class));
         }
         catch (Exception e) {
