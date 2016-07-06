@@ -1,10 +1,14 @@
+com\bigcallcenter\icall\controller\ProductManageController.class
 com\bigcallcenter\icall\test\IdWorkderDemo.class
 com\bigcallcenter\icall\util\EmojiConverter$Type.class
 com\bigcallcenter\icall\domain\User.class
 com\bigcallcenter\icall\domain\CustomUserDetails.class
 com\bigcallcenter\icall\util\EmojiFunction.class
 com\bigcallcenter\icall\redis\SubMessageListener.class
+com\bigcallcenter\icall\domain\Pagination.class
+com\bigcallcenter\icall\service\ProductService.class
 com\bigcallcenter\icall\util\SpringContextUtil.class
+com\bigcallcenter\icall\dao\ProductDao.class
 com\bigcallcenter\icall\util\EmojiConverter$1.class
 com\bigcallcenter\icall\controller\LoginController.class
 com\bigcallcenter\icall\dao\UserDao.class
@@ -14,4 +18,4 @@ com\bigcallcenter\icall\security\LoginDataService.class
 com\bigcallcenter\icall\dao\BaseDao.class
 com\bigcallcenter\icall\controller\IndexController.class
 com\bigcallcenter\icall\service\UserService.class
-com\bigcallcenter\icall\dao\Pagination.class
+com\bigcallcenter\icall\domain\Goods.class
