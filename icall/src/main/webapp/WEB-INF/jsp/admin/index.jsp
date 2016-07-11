@@ -41,7 +41,9 @@
 	                    <button type="button" class="btn btn-default" data-addtab="message2" url="/admin/message" content="指定内容"><i class="glyphicon glyphicon-bullhorn"></i>指定内容16</button>
 	                    <button type="button" class="btn btn-default" data-addtab="setting2" url="/admin/setting" title="指定标题"><i class="glyphicon glyphicon-cog"></i>指定标题16</button>
 	                    <button type="button" class="btn btn-default" data-addtab="ajax2" url="/admin/profiles" ajax='true'><i class="glyphicon glyphicon-user"></i>使用AJA3dsfzX</button>
-
+						<c:forEach var="menuInfo" items="${menuInfos }">
+							${menuInfo.menuName }
+						</c:forEach>
 	                </div>
 			   </div>
 			</div>

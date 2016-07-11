@@ -1,10 +1,6 @@
 package com.bigcallcenter.icall.dao;
 
-import java.sql.SQLException;
-
-
 import org.apache.log4j.Logger;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +18,7 @@ public class UserDao extends BaseDao {
 	{
 		User user = null;
         try {
-            String sql = "SELECT * FROM t_sys_User WHERE loginName=? ";
+            String sql = "SELECT * FROM t_sys_User WHERE login_name= ? ";
             user = this.getJdbcTemplate().queryForObject(sql, new Object[]{loginName}, 
                     new BeanPropertyRowMapper<User>(User.class));
         }

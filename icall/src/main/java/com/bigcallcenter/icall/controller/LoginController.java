@@ -1,5 +1,7 @@
 package com.bigcallcenter.icall.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,10 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bigcallcenter.icall.domain.MenuInfo;
+import com.bigcallcenter.icall.service.UserService;
+
 @Controller
 public class LoginController {
 	@Autowired
     private AuthenticationManager myAuthenticationManager;
+	
 	
 	@RequestMapping(value = "/loginpage.do", method = RequestMethod.GET)
     public ModelAndView loginpage(@RequestParam(value = "error", required = false) String error,
@@ -40,7 +46,6 @@ public class LoginController {
     	 session.setAttribute("USERNAME", username);
 		modelMap.addAttribute("username", username);
 		modelMap.addAttribute("test", "测试传递参数");
-		//调到管理员首页
 		return "forward:/admin/index.do";
     }
 	
