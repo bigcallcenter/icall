@@ -36,4 +36,14 @@ public class UserService {
 		}
 		return menuInfos;
 	}
+	
+	public List<User> getAllUsers(){
+		List<User> users = null;
+		try {
+			users = userDao.getAllusers();
+		} catch (Exception e) {
+			logger.error(e);
+		}
+		return users;
+	}
 }

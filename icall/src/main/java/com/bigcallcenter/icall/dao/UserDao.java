@@ -1,5 +1,7 @@
 package com.bigcallcenter.icall.dao;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
@@ -28,5 +30,10 @@ public class UserDao extends BaseDao {
         }
         
         return user;
+	}
+	
+	public List<User> getAllusers() throws Exception{
+		String sql = "select * from t_sys_user";
+		return this.getJdbcTemplate().query(sql, new BeanPropertyRowMapper<User>(User.class));
 	}
 }
