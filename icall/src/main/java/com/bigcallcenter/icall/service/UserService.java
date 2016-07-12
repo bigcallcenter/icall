@@ -2,6 +2,7 @@ package com.bigcallcenter.icall.service;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class UserService {
 	private MenuDao menuDao;
 	
 	
-	
+	private Logger logger = Logger.getLogger(UserService.class);
 	
 	public User getMember(String loginName)
 	{
@@ -27,6 +28,12 @@ public class UserService {
 	}
 	
 	public List<MenuInfo> getMenuInfoByUser(String loginName){
-		return menuDao.getMenuInfoByUser(loginName);
+		List<MenuInfo> menuInfos = null;
+		try {
+			menuInfos = menuDao.getMenuInfoByUser(loginName);
+		} catch (Exception e) {
+			logger.equals(e);
+		}
+		return menuInfos;
 	}
 }
